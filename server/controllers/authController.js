@@ -19,7 +19,13 @@ const loginUser = async (req, res) => {
         }
 
         //check passwords
-        res.json(user.password)
+        if(user.password == password){
+            res.json("Passwords Match")
+        } else {
+            return res.json({
+                error: 'Incorrect Password'
+            })
+        }
 
     } catch (error) {
         console.log(error)

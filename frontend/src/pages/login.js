@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom';
+import {IP_ADDRESS} from './config'
 
 export default function Login() {
 
@@ -18,12 +19,12 @@ export default function Login() {
         e.preventDefault()
         const {username, password} = data
         try {
-            const {data} = await axios.post('http://localhost:8000/login', {
+            const {data} = await axios.post(IP_ADDRESS + ':8000/login', {
                 username,
                 password
             });
             if(data.error){
-                toast.success(data.error)
+                toast.error(data.error)
             } else {
                 setData({});
                 navigate('/home')
